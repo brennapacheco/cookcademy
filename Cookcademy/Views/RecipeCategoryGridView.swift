@@ -8,23 +8,36 @@
 import SwiftUI
 
 struct RecipeCategoryGridView: View {
-    
-    private var recipeData = RecipeData()
-    
     var body: some View {
+        
+        let columnLayout = [GridItem(), GridItem()]
+        
         NavigationStack {
-            LazyVGrid(columns: [GridItem()]) {
-                ForEach(MainInformation.Category.allCases, id: \.self) { category in
-                    Text(category.rawValue)
-                        .font(.title)
-                }
-            }.navigationTitle("Categories")
+            ScrollView {
+                LazyVGrid(columns: columnLayout) {
+                    ForEach(MainInformation.Category.allCases, id: \.self) { category in
+                        CategoryView(category: category)
+                    }
+                }.navigationTitle("Categories")
+            }
         }
     }
 }
 
-extension RecipeCategoryGridView {
+struct CategoryView: View {
     
+    let category: MainInformation.Category
+    
+    var body: some View {
+        ZStack {
+            Image(category.rawValue)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .opacity(0.35)
+            Text(category.rawValue)
+                .font(.title)
+        }
+    }
 }
 
 #Preview {
