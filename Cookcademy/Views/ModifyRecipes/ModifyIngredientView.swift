@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ModifyIngredientView: View {
     @State var ingredient: Ingredient
@@ -13,12 +14,12 @@ struct ModifyIngredientView: View {
     var body: some View {
         Form {
             TextField("Ingredient name", text: $ingredient.name)
-            Stepper(value: $ingredient.quantity, in: 0...100, step: 1.0, label: {
+            Stepper(value: $ingredient.quantity, in: 0...100, step: 0.5, label: {
                 HStack {
                     Text("Quantity:")
                     TextField("Quantity",
                               value: $ingredient.quantity,
-                              formatter: NumberFormatter())
+                              formatter: NumberFormatter.decimal)
                     .keyboardType(.numbersAndPunctuation)
                 }
             })
@@ -30,6 +31,14 @@ struct ModifyIngredientView: View {
             .pickerStyle(MenuPickerStyle())
         }
     }
+}
+
+extension NumberFormatter {
+  static var decimal: NumberFormatter {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    return formatter
+  }
 }
 
 #Preview {
