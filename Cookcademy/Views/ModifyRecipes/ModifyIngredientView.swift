@@ -9,7 +9,8 @@ import SwiftUI
 import Foundation
 
 struct ModifyIngredientView: View {
-    @State var ingredient: Ingredient
+    @Binding var ingredient: Ingredient
+    let createAction: ((Ingredient)-> Void)
     
     var body: some View {
         Form {
@@ -29,6 +30,13 @@ struct ModifyIngredientView: View {
                 }
             })
             .pickerStyle(MenuPickerStyle())
+            HStack {
+                Spacer()
+                Button("Save") {
+                    createAction(ingredient)
+                }
+                Spacer()
+            }
         }
     }
 }
@@ -42,6 +50,8 @@ extension NumberFormatter {
 }
 
 #Preview {
-    var ing = Ingredient(name: "Test name", quantity: 0, unit: .cups)
-    return ModifyIngredientView(ingredient: ing)
+    @State var ing = Ingredient(name: "", quantity: 0, unit: .none)
+    return ModifyIngredientView(ingredient: $ing) { ingredient in
+        print(ingredient)
+    }
 }
