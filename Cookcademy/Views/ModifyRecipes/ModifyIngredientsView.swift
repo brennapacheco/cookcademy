@@ -11,6 +11,9 @@ struct ModifyIngredientsView: View {
     @Binding var ingredients: [Ingredient]
     @State private var newIngredient = Ingredient()
     
+    private let listBackgroundColor = AppColor.background
+    private let listTextColor = AppColor.foreground
+    
     var body: some View {
         VStack {
             if ingredients.isEmpty {
@@ -18,7 +21,7 @@ struct ModifyIngredientsView: View {
                 NavigationLink("Add the first ingredient",
                                destination: ModifyIngredientView(ingredient: $newIngredient) { ingredient in
                     ingredients.append(ingredient)
-                    newIngredient = Ingredient(name: "", quantity: 0.0, unit: .none)
+                    newIngredient = Ingredient()
                 })
                 .buttonStyle(.bordered)
                 Spacer()
@@ -28,6 +31,7 @@ struct ModifyIngredientsView: View {
                         let ingredient = ingredients[index]
                         Text(ingredient.description)
                     }
+                    .listRowBackground(listBackgroundColor)
                     NavigationLink("Add another ingredient",
                                    destination: ModifyIngredientView(ingredient: $newIngredient)
                                    { ingredient in
@@ -35,7 +39,9 @@ struct ModifyIngredientsView: View {
                         newIngredient = Ingredient()
                     })
                     .buttonStyle(PlainButtonStyle())
+                    .listRowBackground(listBackgroundColor)
                 }
+                .foregroundStyle(listTextColor)
             }
         }
     }
