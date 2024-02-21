@@ -52,7 +52,7 @@ extension NumberFormatter {
 }
 
 #Preview {
-    @State var ing = Ingredient(name: "", quantity: 0, unit: .none)
+    @State var ing = Ingredient()
     return ModifyIngredientView(ingredient: $ing) { ingredient in
         print(ingredient)
     }
