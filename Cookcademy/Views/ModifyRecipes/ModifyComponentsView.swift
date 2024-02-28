@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModifyIngredientsView: View {
+struct ModifyComponentsView: View {
     @Binding var ingredients: [Ingredient]
     @State private var newIngredient = Ingredient()
     
@@ -52,5 +52,5 @@ struct ModifyIngredientsView: View {
     @State var myIngredients = [Ingredient(name: "test",
                                            quantity: 7.0,
                                            unit: .cups)]
-    return ModifyIngredientsView(ingredients: $myIngredients)
+    return ModifyComponentsView(ingredients: $myIngredients)
 }
