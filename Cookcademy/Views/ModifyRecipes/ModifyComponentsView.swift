@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+protocol RecipeComponent {
+    init()
+}
+
 struct ModifyComponentsView: View {
     @Binding var ingredients: [Ingredient]
     @State private var newIngredient = Ingredient()

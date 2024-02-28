@@ -25,7 +25,7 @@ struct ModifyDirectionView: View {
                 Spacer()
                 Button("Save") {
                     createAction(direction)
-                    mode.wrappedValue.dismiss() //closes the modal view
+                    mode.wrappedValue.dismiss() 
                 }
                 Spacer()
             }
