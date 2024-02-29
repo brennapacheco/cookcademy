@@ -47,8 +47,8 @@ struct MainInformation {
       }
 }
 
-struct Ingredient {
-    var name:String
+struct Ingredient: RecipeComponent {
+    var name: String
     var quantity: Double
     var unit: Unit
     

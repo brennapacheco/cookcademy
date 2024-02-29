@@ -25,7 +25,7 @@ struct ModifyRecipeView: View {
             case .main:
                 ModifyMainInformationView(mainInformation: $recipe.mainInformation)
             case .ingredients:
-                ModifyComponentsView(ingredients: $recipe.ingredients)
+                ModifyComponentsView<Ingredient, ModifyIngredientView>(ingredients: $recipe.ingredients)
             case .directions:
                 Text("Directions Editor")
             }
