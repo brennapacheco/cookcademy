@@ -8,9 +8,15 @@
 import SwiftUI
 import Foundation
 
-struct ModifyIngredientView: View {
+struct ModifyIngredientView: View, ModifyComponentView {
     @Binding var ingredient: Ingredient
     let createAction: ((Ingredient)-> Void)
+    
+    init(component: Binding<Ingredient>, createAction: @escaping (Ingredient) -> Void) {
+        self._ingredient = component
+        self.createAction = createAction
+    }
+    
     @Environment(\.presentationMode) private var mode
     private let listBackgroundColor = AppColor.background
     private let listTextColor = AppColor.foreground
@@ -59,8 +65,8 @@ extension NumberFormatter {
 }
 
 #Preview {
-    @State var ing = Ingredient()
-    return ModifyIngredientView(ingredient: $ing) { ingredient in
+    @State var ing = Recipe.testRecipes[0].ingredients[0]
+    return ModifyIngredientView(component: $ing) { ingredient in
         print(ingredient)
     }
 }
