@@ -72,6 +72,11 @@ extension RecipesListView {
     private var navigationTitle: String {
         "\(category.rawValue) Recipes"
     }
+    
+    func binding(for recipe: Recipe) -> Binding<Recipe> {
+        guard let index = recipeData.index(of: recipe) else { fatalError("Recipe not found") }
+        return $recipeData.recipes[index]
+    }
 }
 
 #Preview {
