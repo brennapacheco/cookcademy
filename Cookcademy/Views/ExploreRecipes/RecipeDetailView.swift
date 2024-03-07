@@ -11,7 +11,8 @@ struct RecipeDetailView: View {
     @Binding var recipe: Recipe
     private let listBackgroundColor = AppColor.background
     private let listTextColor = AppColor.foreground
-    
+    @State private var isPresenting = false
+
     var body: some View {
         VStack {
             HStack {
@@ -52,6 +53,28 @@ struct RecipeDetailView: View {
             }
         }
         .navigationTitle(recipe.mainInformation.name)
+        .toolbar {
+            ToolbarItem {
+                HStack {
+                    Button("Edit") {
+                        isPresenting = true
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $isPresenting, content: {
+            NavigationStack {
+                ModifyRecipeView(recipe: $recipe)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Save") {
+                                isPresenting = false
+                            }
+                        }
+                    }
+                    .navigationTitle("Edit Recipe")
+            }
+        })
     }
 }
 
