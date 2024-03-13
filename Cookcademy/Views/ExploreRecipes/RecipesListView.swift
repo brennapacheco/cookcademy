@@ -65,6 +65,11 @@ struct RecipesListView: View {
 
 extension RecipesListView {
     
+    enum ViewStyle {
+        case favorites
+        case singleCategory(MainInformation.Category)
+    }
+    
     private var recipes: [Recipe] {
         recipeData.recipes(for: category)
     }
