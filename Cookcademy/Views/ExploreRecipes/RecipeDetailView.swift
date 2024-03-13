@@ -59,6 +59,12 @@ struct RecipeDetailView: View {
                     Button("Edit") {
                         isPresenting = true
                     }
+                    Button {
+                        recipe.isFavorite.toggle()
+                    } label: {
+                        Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
+                    }
+
                 }
             }
         }
