@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var listBackgroundColor = AppColor.background
-    @State private var listTextColor = AppColor.foreground
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     @State private var hideOptionalSteps: Bool = false
     
     var body: some View {
