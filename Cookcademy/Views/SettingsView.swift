@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
     @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
-    @State private var hideOptionalSteps: Bool = false
+    @AppStorage("hideOptionalSteps") private var hideOptionalSteps: Bool = false
     
     var body: some View {
         NavigationStack {
