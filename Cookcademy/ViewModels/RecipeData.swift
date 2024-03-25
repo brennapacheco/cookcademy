@@ -16,7 +16,10 @@ class RecipeData: ObservableObject {
     
     private var recipesFileURL: URL {
         do {
-            let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let documentsDirectory = try FileManager.default.url(for: .documentDirectory, 
+                                                                 in: .userDomainMask, 
+                                                                 appropriateFor: nil,
+                                                                 create: true)
             return documentsDirectory.appending(path: "recipeData")
         } catch {
             fatalError("An error occurred while getting the url: \(error)")
@@ -48,7 +51,7 @@ class RecipeData: ObservableObject {
         return nil
     }
     
-    func saveRecipes() throws {
+    func saveRecipes() {
         do {
             let encodedData = try JSONEncoder().encode(recipes)
             try encodedData.write(to: recipesFileURL)
@@ -57,9 +60,8 @@ class RecipeData: ObservableObject {
         }
     }
     
-    func loadRecipes() throws {
+    func loadRecipes() {
         guard let data = try? Data(contentsOf: recipesFileURL) else { return }
-
         do {
             let savedRecipes = try JSONDecoder().decode([Recipe].self, from: data)
             recipes = savedRecipes
